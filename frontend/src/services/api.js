@@ -101,3 +101,8 @@ export function predictRisk(data) {
     body: JSON.stringify(data),
   });
 }
+
+export function predictAllSuppliersRisk() {
+  return request("/risk/predict-all", { method: "POST" });
+}
+
