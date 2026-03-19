@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FileUploader from "../components/FileUploader";
 import { uploadSetupFile, buildIndexes } from "../services/api";
+import { CheckCircle, Rocket } from "lucide-react";
 
 const UPLOAD_STEPS = [
   {
@@ -145,9 +146,9 @@ export default function SetupPage() {
                 <span className="spinner spinner--sm" /> Building Indexes…
               </>
             ) : buildStatus === "done" ? (
-              "✅ Setup Complete — Redirecting…"
+              <><CheckCircle size={18} style={{ marginRight: '8px' }} /> Setup Complete — Redirecting…</>
             ) : (
-              "🚀 Build Indexes & Finish Setup"
+              <><Rocket size={18} style={{ marginRight: '8px' }} /> Build Indexes & Finish Setup</>
             )}
           </button>
 

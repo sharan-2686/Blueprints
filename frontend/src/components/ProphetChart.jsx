@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AlertTriangle } from "lucide-react";
 import {
   AreaChart,
   Area,
@@ -45,7 +46,7 @@ export default function ProphetChart({ componentId }) {
     const displayMsg = typeof errorDetails === "object" ? JSON.stringify(errorDetails) : errorDetails;
     return (
       <div className="ir-chart-error">
-        <p>⚠️ {displayMsg}</p>
+        <p style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><AlertTriangle size={16} /> {displayMsg}</p>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { predictAllSuppliersRisk } from "../services/api";
 import ResultsTable from "../components/ResultsTable";
 import RiskBadge from "../components/RiskBadge";
+import { Building2, ShieldAlert, ShieldCheck, TrendingUp, RefreshCw, ShieldHalf } from "lucide-react";
 
 // Helper component for a little gauge or progress bar in the table
 function ProgressBar({ value, max = 100, colorClass = "success" }) {
@@ -81,7 +82,7 @@ export default function SupplierRisk() {
         {/* State 1: Before Prediction (Hero) */}
         {!results && !loading && (
           <div style={{ textAlign: "center", padding: "4rem 2rem", background: "var(--glass-bg)", border: "1px solid var(--glass-border)", borderRadius: "var(--radius-lg)", backdropFilter: "blur(20px)", boxShadow: "var(--glass-shadow)", marginTop: "2rem" }}>
-            <div style={{ fontSize: "4rem", marginBottom: "1.5rem" }}>🛡️</div>
+            <div style={{ fontSize: "4rem", marginBottom: "1.5rem", display: 'flex', justifyContent: 'center' }}><ShieldHalf size={64} color="#818cf8" /></div>
             <h1 style={{ fontSize: "2.5rem", fontWeight: "800", marginBottom: "1rem", background: "linear-gradient(135deg, #FFF, #818cf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               AI Supplier Risk Intelligence
             </h1>
@@ -123,7 +124,7 @@ export default function SupplierRisk() {
                 <p style={{ color: "var(--text-secondary)", marginTop: "0.5rem" }}>Latest model output across your active supplier base.</p>
               </div>
               <button className="btn btn--primary" onClick={handlePredict} style={{ borderRadius: "8px" }}>
-                <span className="sidebar__icon">🔄</span> Re-Run Analysis
+                <span className="sidebar__icon" style={{display: 'flex'}}><RefreshCw size={18} /></span> Re-Run Analysis
               </button>
             </div>
 
@@ -131,7 +132,7 @@ export default function SupplierRisk() {
             {insights && (
               <div className="summary-cards" style={{ marginBottom: "2.5rem" }}>
                 <div className="summary-card">
-                  <span className="summary-card__icon" style={{ background: "rgba(99, 102, 241, 0.15)", color: "#818cf8" }}>🏢</span>
+                  <span className="summary-card__icon"><Building2 size={24} color="#818cf8" /></span>
                   <div>
                     <p className="summary-card__value">{insights.count}</p>
                     <p className="summary-card__label">Suppliers Assessed</p>
@@ -139,7 +140,7 @@ export default function SupplierRisk() {
                 </div>
                 
                 <div className="summary-card">
-                  <span className="summary-card__icon" style={{ background: "rgba(239, 68, 68, 0.15)", color: "#f87171" }}>⚠️</span>
+                  <span className="summary-card__icon"><ShieldAlert size={24} color="#f87171" /></span>
                   <div>
                     <p className="summary-card__value" style={{ color: insights.highRiskCount > 0 ? "#f87171" : "inherit" }}>
                       {insights.highRiskCount}
@@ -149,7 +150,7 @@ export default function SupplierRisk() {
                 </div>
 
                 <div className="summary-card">
-                  <span className="summary-card__icon" style={{ background: "rgba(34, 197, 94, 0.15)", color: "#34d399" }}>🛡️</span>
+                  <span className="summary-card__icon"><ShieldCheck size={24} color="#34d399" /></span>
                   <div>
                     <p className="summary-card__value" style={{ color: "#34d399" }}>
                       {insights.lowRiskCount}
@@ -159,7 +160,7 @@ export default function SupplierRisk() {
                 </div>
 
                 <div className="summary-card">
-                  <span className="summary-card__icon" style={{ background: "rgba(245, 158, 11, 0.15)", color: "#fbbf24" }}>📈</span>
+                  <span className="summary-card__icon"><TrendingUp size={24} color="#fbbf24" /></span>
                   <div>
                     <p className="summary-card__value">
                       {(insights.avgRisk * 100).toFixed(1)}%

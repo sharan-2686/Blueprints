@@ -7,6 +7,7 @@ import {
 } from "../services/api";
 import ResultsTable from "../components/ResultsTable";
 import RiskBadge from "../components/RiskBadge";
+import { Cpu, Factory, Package, Link } from "lucide-react";
 
 export default function InventoryDash() {
   const [summary, setSummary] = useState(null);
@@ -114,7 +115,7 @@ export default function InventoryDash() {
       {/* Summary cards */}
       <div className="summary-cards">
         <div className="summary-card">
-          <span className="summary-card__icon">🔩</span>
+          <span className="summary-card__icon"><Cpu size={24} color="#818cf8" /></span>
           <div>
             <p className="summary-card__value">
               {summary?.component_count ?? 0}
@@ -123,7 +124,7 @@ export default function InventoryDash() {
           </div>
         </div>
         <div className="summary-card">
-          <span className="summary-card__icon">🏭</span>
+          <span className="summary-card__icon"><Factory size={24} color="#f87171" /></span>
           <div>
             <p className="summary-card__value">
               {summary?.supplier_count ?? 0}
@@ -132,7 +133,7 @@ export default function InventoryDash() {
           </div>
         </div>
         <div className="summary-card">
-          <span className="summary-card__icon">📦</span>
+          <span className="summary-card__icon"><Package size={24} color="#34d399" /></span>
           <div>
             <p className="summary-card__value">
               {summary?.inventory_count ?? 0}
@@ -141,7 +142,7 @@ export default function InventoryDash() {
           </div>
         </div>
         <div className="summary-card">
-          <span className="summary-card__icon">🔗</span>
+          <span className="summary-card__icon"><Link size={24} color="#fbbf24" /></span>
           <div>
             <p className="summary-card__value">
               {summary?.supplier_component_count ?? 0}

@@ -6,6 +6,12 @@ import {
   runProphetForecast,
 } from "../services/api";
 import ProphetChart from "../components/ProphetChart";
+import { 
+  Clock, Rocket, BarChart3, AlertCircle, AlertTriangle, 
+  CheckCircle2, CircleDollarSign, Search, Inbox, 
+  Calendar, RefreshCw, Timer, Factory, DollarSign, Target,
+  ChevronDown, ChevronRight
+} from "lucide-react";
 
 /* ── Helpers ──────────────────────────────────────────────────── */
 
@@ -204,7 +210,7 @@ export default function InventoryRisk() {
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           {summary?.last_predicted_at && (
             <div className="ir-header__timestamp">
-              <span className="ir-header__ts-icon">🕐</span>
+              <span className="ir-header__ts-icon" style={{display: 'flex'}}><Clock size={16} /></span>
               Last predicted: {fmtDate(summary.last_predicted_at)}
             </div>
           )}
@@ -221,7 +227,7 @@ export default function InventoryRisk() {
               </>
             ) : (
               <>
-                <span>🚀</span> Train Prophet
+                <span style={{display: 'flex'}}><Rocket size={16} /></span> Train Prophet
               </>
             )}
           </button>
@@ -231,35 +237,35 @@ export default function InventoryRisk() {
       {/* ── Summary Cards ─────────────────────────────────────── */}
       <div className="ir-summary-cards">
         <div className="ir-summary-card ir-summary-card--total">
-          <span className="ir-summary-card__icon">📊</span>
+          <span className="ir-summary-card__icon" style={{display: 'flex'}}><BarChart3 size={24} color="#818cf8"/></span>
           <div>
             <p className="ir-summary-card__value">{totalComp}</p>
             <p className="ir-summary-card__label">Total Components</p>
           </div>
         </div>
         <div className="ir-summary-card ir-summary-card--high">
-          <span className="ir-summary-card__icon">🔴</span>
+          <span className="ir-summary-card__icon" style={{display: 'flex'}}><AlertCircle size={24} color="#f87171"/></span>
           <div>
             <p className="ir-summary-card__value">{highCount}</p>
             <p className="ir-summary-card__label">High Risk</p>
           </div>
         </div>
         <div className="ir-summary-card ir-summary-card--medium">
-          <span className="ir-summary-card__icon">🟡</span>
+          <span className="ir-summary-card__icon" style={{display: 'flex'}}><AlertTriangle size={24} color="#fbbf24"/></span>
           <div>
             <p className="ir-summary-card__value">{medCount}</p>
             <p className="ir-summary-card__label">Medium Risk</p>
           </div>
         </div>
         <div className="ir-summary-card ir-summary-card--low">
-          <span className="ir-summary-card__icon">🟢</span>
+          <span className="ir-summary-card__icon" style={{display: 'flex'}}><CheckCircle2 size={24} color="#34d399"/></span>
           <div>
             <p className="ir-summary-card__value">{lowCount}</p>
             <p className="ir-summary-card__label">Low Risk</p>
           </div>
         </div>
         <div className="ir-summary-card ir-summary-card--exposure">
-          <span className="ir-summary-card__icon">💰</span>
+          <span className="ir-summary-card__icon" style={{display: 'flex'}}><CircleDollarSign size={24} color="#fbbf24"/></span>
           <div>
             <p className="ir-summary-card__value">{fmtCurrency(totalExposure)}</p>
             <p className="ir-summary-card__label">Total Risk Exposure</p>
@@ -327,7 +333,7 @@ export default function InventoryRisk() {
           ))}
         </div>
         <div className="ir-search">
-          <span className="ir-search__icon">🔍</span>
+          <span className="ir-search__icon" style={{display: 'flex', color: 'var(--text-muted)'}}><Search size={16}/></span>
           <input
             type="text"
             className="ir-search__input"
@@ -340,9 +346,9 @@ export default function InventoryRisk() {
 
       {/* ── Predictions List ──────────────────────────────────── */}
       {filtered.length === 0 ? (
-        <div className="ir-empty">
-          <span className="ir-empty__icon">📭</span>
-          <p>No predictions match your filters</p>
+        <div className="ir-empty" style={{textAlign: "center", padding: "3rem", display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <span className="ir-empty__icon" style={{display: 'flex', opacity: 0.5, marginBottom: "1rem"}}><Inbox size={32}/></span>
+          <p style={{color: "var(--text-muted)"}}>No predictions match your filters</p>
         </div>
       ) : (
         <div className="ir-predictions">
@@ -387,8 +393,8 @@ export default function InventoryRisk() {
                     </div>
                   </div>
 
-                  <span className={`ir-card__chevron ${isExpanded ? "ir-card__chevron--open" : ""}`}>
-                    ▾
+                  <span className={`ir-card__chevron ${isExpanded ? "ir-card__chevron--open" : ""}`} style={{display: 'flex', marginLeft: "auto", paddingLeft: "1rem"}}>
+                    {isExpanded ? <ChevronDown size={20}/> : <ChevronRight size={20}/>}
                   </span>
                 </div>
 
@@ -397,35 +403,35 @@ export default function InventoryRisk() {
                   <div className="ir-card__details">
                     <div className="ir-card__detail-grid">
                       <div className="ir-card__detail-item">
-                        <span className="ir-card__detail-icon">📅</span>
+                        <span className="ir-card__detail-icon" style={{display: 'flex', color: "#818cf8"}}><Calendar size={18}/></span>
                         <div>
                           <p className="ir-card__detail-label">Prophet Stockout Date</p>
                           <p className="ir-card__detail-value">{fmtDate(p.prophet_stockout_date)}</p>
                         </div>
                       </div>
                       <div className="ir-card__detail-item">
-                        <span className="ir-card__detail-icon">🔄</span>
+                        <span className="ir-card__detail-icon" style={{display: 'flex', color: "#34d399"}}><RefreshCw size={18}/></span>
                         <div>
                           <p className="ir-card__detail-label">Prophet Reorder Date</p>
                           <p className="ir-card__detail-value">{fmtDate(p.prophet_reorder_date)}</p>
                         </div>
                       </div>
                       <div className="ir-card__detail-item">
-                        <span className="ir-card__detail-icon">⏱️</span>
+                        <span className="ir-card__detail-icon" style={{display: 'flex', color: "#f87171"}}><Timer size={18}/></span>
                         <div>
                           <p className="ir-card__detail-label">Days Until Stockout</p>
                           <p className="ir-card__detail-value">{formatDays(p.days_until_stockout)}</p>
                         </div>
                       </div>
                       <div className="ir-card__detail-item">
-                        <span className="ir-card__detail-icon">🏭</span>
+                        <span className="ir-card__detail-icon" style={{display: 'flex', color: "#a78bfa"}}><Factory size={18}/></span>
                         <div>
                           <p className="ir-card__detail-label">Production Impact</p>
                           <p className="ir-card__detail-value">{fmt(p.production_impact)}</p>
                         </div>
                       </div>
                       <div className="ir-card__detail-item">
-                        <span className="ir-card__detail-icon">💵</span>
+                        <span className="ir-card__detail-icon" style={{display: 'flex', color: "#fbbf24"}}><DollarSign size={18}/></span>
                         <div>
                           <p className="ir-card__detail-label">Total Risk Cost</p>
                           <p className="ir-card__detail-value ir-card__detail-value--highlight">
@@ -434,7 +440,7 @@ export default function InventoryRisk() {
                         </div>
                       </div>
                       <div className="ir-card__detail-item">
-                        <span className="ir-card__detail-icon">🎯</span>
+                        <span className="ir-card__detail-icon" style={{display: 'flex', color: "#60a5fa"}}><Target size={18}/></span>
                         <div>
                           <p className="ir-card__detail-label">Confidence Score</p>
                           <p className="ir-card__detail-value">{fmt(p.confidence)}</p>

@@ -1,6 +1,6 @@
 import { getAccessToken } from "./auth";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 /* ── Internal helper ──────────────────────────────────────────── */
 
@@ -102,10 +102,10 @@ export function predictRisk(data) {
   });
 }
 
-<<<<<<< HEAD
 export function predictAllSuppliersRisk() {
   return request("/risk/predict-all", { method: "POST" });
-=======
+}
+
 /* ── Internal Risk (Inventory Risk) ───────────────────────────── */
 
 export function getInternalRiskPredictions() {
@@ -130,6 +130,4 @@ export function runProphetForecast() {
 
 export function getProphetForecastData(componentId) {
   return request(`/api/risk/forecast/${componentId}`);
->>>>>>> 14f81775b42b3aac6c273d17bfda94d46a98859e
 }
-

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FileUploader from "../components/FileUploader";
 import { analyzeBom } from "../services/api";
+import { PartyPopper } from "lucide-react";
 
 export default function BomAnalysis() {
   const [bomFile, setBomFile] = useState(null);
@@ -90,7 +91,8 @@ export default function BomAnalysis() {
 
             {!results.analysis || results.analysis.length === 0 ? (
               <div style={{ padding: "3rem", textAlign: "center", backgroundColor: "rgba(255,255,255,0.05)", borderRadius: "8px", color: "#9CA3AF" }}>
-                🎉 No missing components found! Your registered receipts fulfill all BOM requirements perfectly.
+                <PartyPopper color="#34D399" size={24} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }} />
+                No missing components found! Your registered receipts fulfill all BOM requirements perfectly.
               </div>
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
